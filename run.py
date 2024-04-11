@@ -1,21 +1,15 @@
-import time
 import nodes
-import flux_capacitor 
+import tools
+import flux_capacitor
 
-def obtener_clave_archivo(ruta_archivo):
-  
-  with open(ruta_archivo, "r") as archivo:
-    clave = archivo.read().strip()
-  return clave
+print("Welcome...")
+print("Initializing app and servers...")
 
-print("Initializing...")
-time.sleep(1)
+access = tools.obtener_clave_archivo()
+#name o el parámetro que desde vía local le vayas a dar a la api de HF que realiza la acción, puede ser string, numero, imagen, etc.
+content = nodes.name
 
-ruta_archivo = "key"
-sulkukey = obtener_clave_archivo(ruta_archivo)
-name = nodes.name
+tokens_now, result = flux_capacitor.do(access, content)
 
-tokens, result = flux_capacitor.do(sulkukey, name)
-
-print("Available tokens now: ", tokens)
-print("Éste es el resultado de la acción realizada:", result)
+print("The result is here:", result)
+print("Available tokens now: ", tokens_now)

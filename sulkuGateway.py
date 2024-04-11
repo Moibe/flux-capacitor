@@ -15,14 +15,14 @@ def getTokens(sulkukey):
 
     return tokens
 
-def debitTokens(sulkukey, cuantos):
+def debitTokens(sulkukey, work):
     
      
     client = gradio_client.Client("Moibe/sulku", hf_token="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", verbose=False)
         
     tokens = client.predict(
             sulkukey,
-            cuantos,
+            work,
             api_name="/debitTokens"
     ) 
 
