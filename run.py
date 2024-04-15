@@ -2,6 +2,7 @@ import nodes
 import tools
 import flux_capacitor
 
+#Punto de entrada para inicialización, aquí solo se obtiene la clave y se reciban las entradas con las que se trabajará.
 print("Welcome...")
 print("Initializing app and servers...")
 
