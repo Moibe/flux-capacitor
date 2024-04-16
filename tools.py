@@ -5,9 +5,9 @@ def obtener_clave_archivo():
         return clave
     except FileNotFoundError:
         # Manejar el error de archivo no encontrado
-        print("Error: El archivo de clave 'key' no se encontró.")
+        print("Error 406: Key not found, you need a key file to run the app correctly.")
         return None
     except Exception as e:
         # Manejar otros errores genéricos
-        print("Error inesperado al leer la clave del archivo:", e)
+        print("Error 406: Unexpected error reading the key file:", e)
         return None

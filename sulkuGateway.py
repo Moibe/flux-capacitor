@@ -27,7 +27,7 @@ def debitTokens(sulkukey, work):
             api_name="/debitTokens"
     ) 
 
-    print(f"Cuenta ahora tiene {tokens} tokens.")   
+    print(f"Available tokens now: {tokens}.")   
     time.sleep(1) 
 
     return tokens
