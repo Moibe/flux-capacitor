@@ -8,26 +8,21 @@ def saldoParaAccion(tokens):
     return True
 
    else:
-    print("Tokens insuficientes para realizar la operación, recargar más.")
+    print("Not enough tokens to perform the action, add more.")
     return False
 
 
 def getResult(content): 
 
-    print("El content que le estoy pasando a Moibe/Basico es: ", content)
-    time.sleep(4)
-
-    #Agregar aquí un validador en el que solo realice el trabajo si el nombre del trabajo es el adecuado para la api usada. 
-    #Esto con el finn de evitar que se ponga un trabajo eesconocido para recibir menos cobro por la acción. 
-    #Es decir, se valida el trabajo y el débito a través de ese string.
+    print("Processing content: ", content)
+    time.sleep(1)
 
     if nodes.work == "picswap":
-      print("Trabajo especificado correctamente, se realizará la acción: ")
+      print("Work specs ok, action: ",  nodes.work)
       time.sleep(1)
 
       #Llamado a App que ejecuta la acción.
       client = gradio_client.Client(nodes.aplicacion, nodes.hf_token, verbose=False)
-    
       result = client.predict(
           content,
           api_name="/predict"
@@ -36,6 +31,6 @@ def getResult(content):
       return result
     
     else: 
-      print("El trabajo  no existe, especificar la variable Work correctamente.")
+      print("Work specs aren't correct. Please fix or contact app.")
       #Regresa cero si el trabajo no se realizó por haber especificado incorrectamente el Work.
       return 0

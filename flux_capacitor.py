@@ -1,5 +1,5 @@
-import nodes
 import theApp
+import nodes
 import sulkuGateway
 
 #Flux capacitor une la Autenticación y la App.
@@ -9,30 +9,42 @@ def do(access, content):
  	#Obten cantidad de tokens dispobibles vía Sulku para ese usuario.
 	resultado = sulkuGateway.getTokens(access)
 
+	#Un try para convertirlo en entero porque quizá bajo alguna circunstancia no sea un número lo que regresa y marcará error al aplicarle int().
+	try:
+		resultado = int(resultado)
+	except ValueError:
+		# Manejar el error de conversión a entero
+		print("Error 401: return value is not int.")
+		
+	except Exception as e:
+		# Manejar otros errores genéricos
+		print("Error 402: Unexpected error convertirng the result:", e)
+		
 	#Si el resultado es un entero, es token.
 	if isinstance(resultado, int): 
-		print("El númmero si es un entero.")
+		#El númmero si es un entero.
 		tokens = resultado
 		continuar = True
-		print("La cantidad de tokens recibida de getTokens es: ", tokens)
+		print("Yoir amount of available tokens is: ", tokens)
 	else: 
-		print("Se recibió un mensaje:", resultado)
+		print("Message:", resultado)
 		continuar = False
 
 	#ACCIÓN#
 	#Habiendo suficientes tokens para la acción, realizarla.
 	if continuar is True and theApp.saldoParaAccion(tokens):
 		resultado = theApp.getResult(content)
-		print("ÉSte es el resultado accesado y obtenido: ", resultado)
+		print("Access granted.")
+		print("Result obtained: ", resultado)
 	else: 
 		resultado = 0
-		print("No hay suficientes tokens para ejecutar la operación.")
+		print(f"Message: Not enough tokens to perform {nodes.work} action.")
       
 	#CHARGE TOKENS
 	#Si se generó un resultado de AI entonces si hay que debitar el token correspondiente basado en la regla propia de la app.
 	if resultado != 0:
-		sulkuGateway.debitTokens(access)
+		sulkuGateway.debitTokens(access, nodes.work)
 	else:
-		"No se debita porque no hubo resultado."
+		"No tokens will be charged because no outcome was produced."
 		
 	return tokens, resultado

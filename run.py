@@ -13,4 +13,3 @@ content = nodes.name
 tokens_now, result = flux_capacitor.do(access, content)
 
 print("The result is here:", result)
-print("Available tokens now: ", tokens_now)
