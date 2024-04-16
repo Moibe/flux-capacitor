@@ -21,7 +21,6 @@ def getResult(content):
       print("Work specs ok, action: ",  nodes.work)
       time.sleep(1)
 
-      #Llamado a App que ejecuta la acción.
       client = gradio_client.Client(nodes.aplicacion, nodes.hf_token, verbose=False)
       result = client.predict(
           content,

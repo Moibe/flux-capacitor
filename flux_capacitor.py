@@ -25,20 +25,20 @@ def do(access, content):
 		#El númmero si es un entero.
 		tokens = resultado
 		continuar = True
-		print("Yoir amount of available tokens is: ", tokens)
+		print("Access granted.")
+		print("Your amount of available tokens is: ", tokens)
 	else: 
 		print("Message:", resultado)
 		continuar = False
 
 	#ACCIÓN#
-	#Habiendo suficientes tokens para la acción, realizarla.
+	print("Performing action, processing...")
 	if continuar is True and theApp.saldoParaAccion(tokens):
 		resultado = theApp.getResult(content)
-		print("Access granted.")
-		print("Result obtained: ", resultado)
+		print("Process success.")
 	else: 
-		resultado = 0
 		print(f"Message: Not enough tokens to perform {nodes.work} action.")
+		resultado = 0
       
 	#CHARGE TOKENS
 	#Si se generó un resultado de AI entonces si hay que debitar el token correspondiente basado en la regla propia de la app.
