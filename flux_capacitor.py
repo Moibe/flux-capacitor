@@ -35,7 +35,7 @@ def do(access, content):
 	print("Performing action, processing...")
 	if continuar is True and theApp.saldoParaAccion(tokens):
 		resultado = theApp.getResult(content)
-		print("Process success.")
+		print("Process completed.")
 	else: 
 		print(f"Message: Not enough tokens to perform {nodes.work} action.")
 		resultado = 0
